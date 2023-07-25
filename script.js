@@ -27,18 +27,6 @@ function getComputerChoice(){
 }
 
 /*
-Write a function that plays a single round of Rock Paper 
-Scissors. The function should take two parameters - the 
-playerSelection and computerSelection - and then return a string
-that declares the winner of the round like so: "You Lose! Paper 
-beats Rock" 
-
-Make your function’s playerSelection parameter 
-case-insensitive (so users can input rock, ROCK, RocK or any 
-other variation).
-*/
-
-/*
 4. Write a funtion that plays one round of the game. The function
 will take two parameters -playerSelection & computerSelection &
 then return a string stating the winner: "You Lose! Paper beats
@@ -60,16 +48,105 @@ to all UPPERCASE then comparing it to get the output of the game
 -If player loses return "You Lose!"
 -If its a tie return "It's a Tie!"
 */
-
+/*
 const playerSelection = "rock";
 const computerSelection = getComputerChoice();
 
 function playRound(playerSelection, computerSelection){
     let playerCompare = playerSelection.toUpperCase();
 
-    if(playerSelection === "ROCK" && computerSelection === "PAPER"){
-        return "You Win!";
+    if(playerCompare === "ROCK"){
+        if(computerSelection === "PAPER"){
+            return "YOU LOSE! PAPER BEATS ROCK";
+        }else if(computerSelection === "SCISSORS"){
+            return "YOU WIN! ROCK BEATS SCISSORS";
+        }else{
+            return "IT'S A TIE!";
+        }
+        
+    } else if(playerCompare === "PAPER"){
+        if(computerSelection === "ROCK"){
+            return "YOU WIN! PAPER BEATS ROCK";
+        }else if(computerSelection === "SCISSORS"){
+            return "YOU LOSE! SCISSORS BEATS PAPER";
+        }else{
+            return "IT'S A TIE!";
+        }
+    } else if(playerCompare === "SCISSORS"){
+        if(computerSelection === "ROCK"){
+            return "YOU LOSE! ROCK BEATS SCISSORS";
+        }else if(computerSelection === "PAPER"){
+            return "YOU WIN! SCISSORS BEATS PAPER";
+        }else{
+            return "IT'S A TIE!";
+        }
     }
 
+}
+*/
+
+/*
+Use the prev. function to create a new function called game().
+This new function will play a 5 round game that keeps score &
+reports the winner or loser at the end.
+
+-Use console.log() to display the results of each round & the 
+winner
+-Use prompt() to get user input
+*/
+
+/*
+PSUEDOCODE
+-Assign playerSelection to prompt() to hold the user input
+-Use a for loop in the game() method to loop the game 5x.
+-Use conditionals to output the results of the game & each round
+*/
+
+function playerSelection(){
+    let playerSelection = prompt("ROCK,PAPER, OR SCISSORS?");
+    let playerCompare = playerSelection.toUpperCase();
+    return playerCompare;
+}
+
+function playRound(playerSelection, getComputerChoice){
+
+    if(playerSelection === "ROCK"){
+        if(getComputerChoice === "PAPER"){
+            console.log(`YOU LOSE! ${getComputerChoice} BEATS ${playerSelection}`);
+        }else if(getComputerChoice === "SCISSORS"){
+            console.log(`YOU WIN! ${playerSelection} BEATS ${getComputerChoice}`);
+        }else{
+            console.log("IT'S A TIE!");
+        }
+        
+    } else if(playerSelection === "PAPER"){
+        if(getComputerChoice === "ROCK"){
+            console.log(`YOU WIN! ${playerSelection} BEATS ${getComputerChoice}`);
+        }else if(getComputerChoice === "SCISSORS"){
+            console.log(`YOU LOSE! ${getComputerChoice} BEATS ${playerSelection}`);
+        }else{
+            console.log("IT'S A TIE!");
+        }
+        
+    } else if(playerSelection === "SCISSORS"){
+        if(getComputerChoice === "ROCK"){
+            console.log(`YOU LOSE! ${getComputerChoice} BEATS ${playerSelection}`);
+        }else if(getComputerChoice === "PAPER"){
+            console.log(`YOU WIN! ${playerSelection} BEATS ${getComputerChoice}`);
+        }else{
+            console.log("IT'S A TIE!");
+        }
+    }
 
 }
+
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for(i = 1; i <= 5; i++){
+        playRound(playerSelection(),getComputerChoice());
+    }
+}
+
+console.log(game());
