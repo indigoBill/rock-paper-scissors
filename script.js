@@ -23,7 +23,7 @@ function getComputerChoice(){
         return "PAPER";
     } else if(num === 3){
         return "SCISSORS";
-    }
+    } 
 }
 
 /*
@@ -112,31 +112,53 @@ function playRound(playerSelection, getComputerChoice){
 
     if(playerSelection === "ROCK"){
         if(getComputerChoice === "PAPER"){
-            console.log(`YOU LOSE! ${getComputerChoice} BEATS ${playerSelection}`);
+            result(playerSelection, getComputerChoice, 0);
         }else if(getComputerChoice === "SCISSORS"){
-            console.log(`YOU WIN! ${playerSelection} BEATS ${getComputerChoice}`);
+            result(playerSelection, getComputerChoice, 1);
         }else{
-            console.log("IT'S A TIE!");
+            result(playerSelection, getComputerChoice);
         }
         
     } else if(playerSelection === "PAPER"){
         if(getComputerChoice === "ROCK"){
-            console.log(`YOU WIN! ${playerSelection} BEATS ${getComputerChoice}`);
+            result(playerSelection, getComputerChoice, 1);
         }else if(getComputerChoice === "SCISSORS"){
-            console.log(`YOU LOSE! ${getComputerChoice} BEATS ${playerSelection}`);
+            result(playerSelection, getComputerChoice, 0);
         }else{
-            console.log("IT'S A TIE!");
+            result(playerSelection, getComputerChoice);
         }
         
     } else if(playerSelection === "SCISSORS"){
         if(getComputerChoice === "ROCK"){
-            console.log(`YOU LOSE! ${getComputerChoice} BEATS ${playerSelection}`);
+            result(playerSelection, getComputerChoice, 0);
         }else if(getComputerChoice === "PAPER"){
-            console.log(`YOU WIN! ${playerSelection} BEATS ${getComputerChoice}`);
+            result(playerSelection, getComputerChoice, 1);
         }else{
-            console.log("IT'S A TIE!");
+            result(playerSelection, getComputerChoice);
         }
     }
+
+}
+
+
+/*
+
+CREATE A FUNCTION TO TRACK SCORE
+CALL IT IN PLAYROUND FUNCTION
+*/
+
+//CREATE A FUNCTION FOR THE CALLS WHEN YOU WIN OR LOSE
+function result(player,computer,gameOutcome){
+    if(gameOutcome === 1){
+        console.log(`YOU WIN! ${player} BEATS ${computer}`);
+    }else if(gameOutcome === 0){
+        console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+    }else if(gameOutcome === undefined){
+        console.log(`IT'S A TIE! ${player} EQUALS ${computer}`);
+    }
+}
+
+function scoreTrack(){
 
 }
 
@@ -144,9 +166,13 @@ function game(){
     let playerScore = 0;
     let computerScore = 0;
 
-    for(i = 1; i <= 5; i++){
+    for(round = 1; round <= 5; round++){
+        console.log(`ROUND: ${round}`);
         playRound(playerSelection(),getComputerChoice());
+
+        
     }
 }
 
 console.log(game());
+//console.log(playRound(playerSelection(),getComputerChoice()));
