@@ -34,38 +34,42 @@ function addPoint(currScore){
 
 //CREATE A FUNCTION TO DISPLAY CURRENT SCORES
 function displayScore(playerScore, computerScore){
-    let scoreDisplay = document.querySelector(".score");
+    let playScore = document.querySelector(".player-score");
+    let compScore = document.querySelector(".computer-score");
 
-    scoreDisplay.textContent = `YOUR SCORE: ${playerScore} COMPUTER SCORE: ${computerScore}`;
+    playScore.textContent = `YOUR SCORE: ${playerScore}`;
+    compScore.textContent = `COMPUTER SCORE: ${computerScore}`;
 }
 
 //RESET POINTS ONCE A PLAYER REACHES 5 POINTS
 function resetGame(){
-    let result = document.querySelector(".result");
+    let gameResult = document.querySelector(".result");
 
     if(currPlayScore === 5){
-        result.textContent = "YOU ARE THE WINNER!";
+        gameResult.textContent = "YOU ARE THE WINNER!";
         currPlayScore = 0;
         currCompScore = 0;
     }else if(currCompScore === 5){
-        result.textContent = "THE COMPUTER IS THE WINNER!";
+        gameResult.textContent = "THE COMPUTER IS THE WINNER!";
         currPlayScore = 0;
         currCompScore = 0;
     }
 }
 
-//CREATE A FUNCTION FOR THE CALLS WHEN YOU WIN OR LOSE
+//CREATE A FUNCTION TO DISPLAY THE RESULTS OF EACH PLAY
 function result(player,computer,gameOutcome){
-    let result = document.querySelector(".result");
+    let playResult = document.querySelector(".result");
     
     if(gameOutcome === 1){
-        result.textContent = `YOU WIN! ${player} BEATS ${computer}`;
+        playResult.textContent = `YOU WIN! ${player} BEATS ${computer}`;
         currPlayScore = addPoint(currPlayScore);
+        //MAKE SCORE BKGD GROW & SHRINK
     }else if(gameOutcome === 0){
-        result.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
+        playResult.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
         currCompScore = addPoint(currCompScore);
+        //MAKE SCORE BKGD GROW & SHRINK
     }else if(gameOutcome === undefined){
-        result.textContent = `IT'S A TIE! ${player} EQUALS ${computer}`;
+        playResult.textContent = `IT'S A TIE! ${player} EQUALS ${computer}`;
     }
     displayScore(currPlayScore,currCompScore);
     resetGame();
@@ -100,10 +104,32 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function mouseOver(e){
+    let mouseOver = e.target;
+    mouseOver.style.backgroundColor = "rgb(236, 230, 199)";
+}
+
+function mouseOut(e){
+    let mouseOut = e.target;
+    mouseOut.style.backgroundColor = "rgb(240, 231, 231)";
+}
+
 //LOOP THRU NODELIST OF BUTTONS & ISOLATE THE BUTTON THE PLAYER SELECTS USING EVENT LISTENER
 buttons.forEach(button => button.addEventListener("click", (event) => {
     playRound(playerSelection(event), computerSelection());
 }));
 
+//EDIT STYLE OF BUTTONS WHEN THEY ARE HOVERED OVER
+buttons.forEach(button => button.addEventListener("mouseover", mouseOver));
+buttons.forEach(button => button.addEventListener("mouseout", mouseOut));
+
+//SELECT EACH DIV BOX OF THE SCORES
+const scoreBkgds = document.querySelectorAll(".score-bkgd");
+
+scoreBkgds.forEach(scoreBkgd => scoreBkgd.addEventListener("change", changeSize));
+
+function changeSize(e){
+    console.log(e);
+}
 
 
