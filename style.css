@@ -15,12 +15,14 @@ body{
     flex-direction: column;
     gap: 50px;
     height: 100%;
+
+  
 }
 
 h1{
     color: rgb(240, 231, 231);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 50px;
+    font-size: 70px;
     padding: 20px 0px;
     text-align: center;
 }
@@ -29,15 +31,32 @@ h1{
 .button-container{
     display: flex;
     justify-content: space-around;
+    
+}
+
+.player-score-container,
+.comp-score-container{
+    align-items: center;
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    width: 300px;
 }
 
 .button-container{
     background-color: rgb(188, 212, 188);
+    border: 10px dashed rgba(236, 230, 199, 80%);
     border-radius: 20px;
-    margin: auto 20px;
-    padding: 40px;
+
+    padding: 10px;
+    flex: auto;
 }
 
+.buttons{
+    display: flex;
+    align-items: center;
+    flex:auto;
+}
 
 .score-bkgd{
     background-color: rgb(152, 172, 152);
@@ -45,42 +64,95 @@ h1{
     color: rgb(240, 231, 231);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    height: 50px;
     padding: 15px;
-    transition: all .07s;
+    transition: all .09s;
+    width: fit-content;
 }
 
-.point-increment{
+.size-change{
+    border: 5px solid pink;
+    box-shadow: 0 0 15px pink;
     transform: scale(1.1);
 }
 
-button{
+.button-container button{
     align-items: center;
     display: flex;
     background-color: rgb(240, 231, 231);
     border: solid 7px;
     border-radius: 100px;
     color: rgb(175, 199, 175);
+    cursor: pointer;
+    flex: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 22px;
     font-weight: bold;
     height: 140px;
-    justify-content: center;
+    justify-content: space-around;
     padding: 20px;
     width: 140px;
+}
+
+.result-container{
+    display: flex;
+    height: 190px;
+    justify-content: center;
 }
 
 .result{
     align-items: center;
     background-color: rgb(167, 190, 167);
+    border: 10px solid rgb(152, 172, 152);
     border-radius: 10px;
     color: rgb(126, 145, 126);
     display: flex;
+    flex: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 30px;
     font-weight: bold;
-    height: 60px;
     justify-content: center;
-    margin: auto;
-    width: 700px;
+    max-width: 700px;
+    text-align: center;
+}
 
+.modal{
+    background-color: rgba(0,0,0,50%);
+    backdrop-filter: blur(4px);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.modal-content{
+    background-color: rgb(152, 172, 152);
+    border: 10px dashed rgb(167, 190, 167);
+    border-radius: 25px;
+    height: 300px;
+    margin: 20% auto;
+    padding: 20px;
+    width: 600px;
+}
+
+.play-button{
+    background-color: pink;
+    border: rgb(240, 231, 231) solid 5px;
+    border-radius: 20px;
+    color: rgb(219, 173, 181);
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 20px;
+}
+
+.modal-text{
+    color: rgb(240, 231, 231);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
 }
