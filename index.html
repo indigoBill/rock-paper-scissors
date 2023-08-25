@@ -10,19 +10,36 @@
         
         <h1 id="game-title">ROCK-PAPER-SCISSORS</h1>
         <div id="score-display" class="score">
-            <div class="player-score score-bkgd">YOUR SCORE: 0</div>
-            <div class="computer-score score-bkgd">COMPUTER SCORE: 0</div>
+            <div class="player-score-container">
+                <div class="player-score score-bkgd">YOUR SCORE: 0</div>
+            </div>
+            <div class="comp-score-container">
+                <div class="computer-score score-bkgd">COMPUTER SCORE: 0</div>
+            </div>
         </div>
 
-        <div id="result-display" class="result"></div>
-
-        <div class="button-container">
-            <button id="rock-btn" class="player-select">ROCK</button>
-            <button id="paper-btn" class="player-select">PAPER</button>
-            <button id="scissors-btn" class="player-select">SCISSORS</button>
+        <div id="result-container" class="result-container">
+            <div id="result-display" class="result"></div>
         </div>
-
         
+        <div id="button-display" class="buttons">
+            <div class="button-container">
+                <button id="rock-btn" class="player-select">ROCK</button>
+                <button id="paper-btn" class="player-select">PAPER</button>
+                <button id="scissors-btn" class="player-select">SCISSORS</button>
+            </div>
+        </div>
+        
+
+        <div id="reset-game-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-text"></div>
+                <button class="play-button">
+                    PLAY AGAIN
+                </button>
+            </div>
+
+        </div>
         
         
     </body>
