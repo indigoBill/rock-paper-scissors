@@ -43,17 +43,29 @@ function displayScore(playerScore, computerScore){
 
 //RESET POINTS ONCE A PLAYER REACHES 5 POINTS
 function resetGame(){
-    let gameResult = document.querySelector(".result");
+    let result = document.querySelector(".result");
+    const modal = document.querySelector(".modal");
+    const modalText = document.querySelector(".modal-text");
+    const playButton = document.querySelector(".play-button");
+
+    function closeModal(){
+        modal.style.display = "none";
+        currPlayScore = 0;
+        currCompScore = 0;
+        displayScore(currPlayScore,currCompScore);
+        result.textContent = "";
+    }
 
     if(currPlayScore === 5){
-        gameResult.textContent = "YOU ARE THE WINNER!";
-        currPlayScore = 0;
-        currCompScore = 0;
+        modal.style.display = "block";
+        modalText.textContent = "YOU ARE THE WINNER!";
     }else if(currCompScore === 5){
-        gameResult.textContent = "THE COMPUTER IS THE WINNER!";
-        currPlayScore = 0;
-        currCompScore = 0;
+        modal.style.display = "block";
+        modalText.textContent = "THE COMPUTER IS THE WINNER!";
+        
     }
+
+    playButton.addEventListener("click", closeModal);
 }
 
 //CREATE A FUNCTION TO DISPLAY THE RESULTS OF EACH PLAY
@@ -63,16 +75,17 @@ function result(player,computer,gameOutcome){
     if(gameOutcome === 1){
         playResult.textContent = `YOU WIN! ${player} BEATS ${computer}`;
         currPlayScore = addPoint(currPlayScore);
-        //MAKE SCORE BKGD GROW & SHRINK
+        playerScoreBoardSize();
     }else if(gameOutcome === 0){
         playResult.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
         currCompScore = addPoint(currCompScore);
-        //MAKE SCORE BKGD GROW & SHRINK
+        compScoreBoardSize();
     }else if(gameOutcome === undefined){
         playResult.textContent = `IT'S A TIE! ${player} EQUALS ${computer}`;
     }
     displayScore(currPlayScore,currCompScore);
     resetGame();
+    
 }
 
 //PLAY A SINGLE ROUND OF THE GAME
@@ -123,13 +136,27 @@ buttons.forEach(button => button.addEventListener("click", (event) => {
 buttons.forEach(button => button.addEventListener("mouseover", mouseOver));
 buttons.forEach(button => button.addEventListener("mouseout", mouseOut));
 
-//SELECT EACH DIV BOX OF THE SCORES
+//INCREASE SCOREBOARD SIZES FOR POINT INCREASE ANIMATION
+function playerScoreBoardSize(){
+    const playerBkgd = document.querySelector(".player-score");
+    playerBkgd.classList.add("size-change");
+}
+
+function compScoreBoardSize(){
+    const compBkgd = document.querySelector(".computer-score");
+    compBkgd.classList.add("size-change");
+}
+
+//USE EVENT LISTENER TO REDUCE SCOREBOARD SIZES
 const scoreBkgds = document.querySelectorAll(".score-bkgd");
 
-scoreBkgds.forEach(scoreBkgd => scoreBkgd.addEventListener("change", changeSize));
+scoreBkgds.forEach(scoreBkgd => scoreBkgd.addEventListener("transitionend", reduceScoreBkgd));
 
-function changeSize(e){
-    console.log(e);
+function reduceScoreBkgd(e){
+    if(e.propertyName !== "transform") return;
+    this.classList.remove("size-change");
 }
+
+
 
 
